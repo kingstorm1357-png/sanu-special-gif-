@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You Sana ❤️</title>
+    <!-- Google Fonts for romantic and elegant text -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a0000, #4d0019);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 51, 102, 0.4);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+            z-index: 10;
+            width: 85%;
+            max-width: 380px;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+        input {
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 25px;
+            border: 1px solid #ff3366;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            width: 85%;
+            font-size: 16px;
+            text-align: center;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+        input::placeholder {
+            color: #ff99aa;
+        }
+        button {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff0033, #ff3366);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 95%;
+            box-shadow: 0 5px 15px rgba(255, 0, 51, 0.4);
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        #message-screen {
+            display: none;
+            transform: scale(0.8);
+            opacity: 0;
+        }
+        h1.romantic-title {
+            color: #ff4d79;
+            font-family: 'Dancing Script', cursive;
+            font-size: 48px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 15px rgba(255, 77, 121, 0.8);
+            line-height: 1.2;
+        }
+        h2 {
+            color: #ffb3c6;
+            font-size: 22px;
+            font-weight: 300;
+            margin-top: 5px;
+        }
+        .quote {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #ffd9e2;
+            margin: 25px 0;
+            font-style: italic;
+            border-top: 1px solid rgba(255, 77, 121, 0.3);
+            border-bottom: 1px solid rgba(255, 77, 121, 0.3);
+            padding: 15px 0;
+        }
+        .heart {
+            position: absolute;
+            color: #ff1a4d;
+            font-size: 24px;
+            animation: floatUp linear infinite;
+            z-index: 1;
+            text-shadow: 0 0 10px rgba(255, 26, 77, 0.5);
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; }
+        }
+        .show-message {
+            display: block !important;
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes popIn {
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="container">
+        <h1 class="romantic-title" style="font-size: 38px;">Sana Ke Liye...</h1>
+        <p style="color: #ff99aa; font-size: 14px; margin-bottom: 20px;">Duniya ki sabse khubsurat ladki ke naam</p>
+        
+        <input type="text" id="nameInput" placeholder="Aapka pyara naam?"><br>
+        <input type="password" id="passInput" placeholder="Secret Password"><br>
+        
+        <button onclick="checkLogin()">Dekhein kya hai 💖</button>
+        <p id="errorMsg" style="color: #ff4d4d; font-size: 14px; display: none; margin-top: 15px;">Aap Sana nahi lagti... ya password galat hai!</p>
+    </div>
+
+    <!-- Message Screen -->
+    <div id="message-screen" class="container">
+        <h1 class="romantic-title">I Love You, Sana ❤️</h1>
+        <h2>Mujhe Maaf Kar Do Na 🥺</h2>
+        
+        <div class="quote">
+            "Dil ki dhadkan aur meri saans ho tum,<br>
+            Meri har ghazal, har nazm ka ehsaas ho tum.<br>
+            Ghalti ho gayi mujhse, par sach toh yeh hai,<br>
+            Meri zindagi ki sabse pyari aas ho tum."
+        </div>
+
+        <p style="font-size: 16px; color: white; font-weight: 300;">Plz maan jao meri jaan, ab nahi karunga aisi ghalti.</p>
+    </div>
+
+    <script>
+        function checkLogin() {
+            let name = document.getElementById("nameInput").value.trim().toLowerCase();
+            let pass = document.getElementById("passInput").value;
+
+            // Password abhi bhi 1234 hai, aap chahein toh badal sakte hain
+            if (name === "sana" && pass === "1234") {
+                // Login screen chhupao
+                document.getElementById("login-screen").style.display = "none";
+                
+                // Message screen dikhao animation ke sath
+                let msgScreen = document.getElementById("message-screen");
+                msgScreen.classList.add("show-message");
+                
+                startHearts(); // Dil girne wala animation start
+            } else {
+                document.getElementById("errorMsg").style.display = "block";
+            }
+        }
+
+        function startHearts() {
+            // Har 200 milliseconds mein naya dil banega
+            setInterval(() => {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw";
+                // Random size and speed
+                let size = Math.random() * 20 + 15;
+                heart.style.fontSize = size + "px";
+                heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                
+                document.body.appendChild(heart);
+                
+                // Phone hang na ho isliye hearts delete karte raho
+                setTimeout(() => { heart.remove(); }, 6000);
+            }, 200);
+        }
+    </script>
+</body>
+</html>
